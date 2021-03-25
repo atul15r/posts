@@ -17,7 +17,7 @@ export const PostDetails: FC<Props> = ({navigation, route}) => {
           <Button transparent onPress={() => navigation.goBack()}>
             <Text
               style={{
-                color: Platform.OS === 'android' ? '#fff' : '#333',
+                // color: Platform.OS === 'android' ? '#fff' : '#333',
                 textTransform: 'capitalize',
               }}>
               back
