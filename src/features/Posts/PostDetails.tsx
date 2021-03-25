@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Platform} from 'react-native';
 import {Container, Header, Left, Text, Button, Title, Body} from 'native-base';
 // @ts-ignore
 import JSONTree from 'react-native-json-tree';
@@ -15,7 +15,11 @@ export const PostDetails: FC<Props> = ({navigation, route}) => {
       <Header>
         <Left>
           <Button transparent onPress={() => navigation.goBack()}>
-            <Text style={{color: '#fff', textTransform: 'capitalize'}}>
+            <Text
+              style={{
+                color: Platform.OS === 'android' ? '#fff' : '#333',
+                textTransform: 'capitalize',
+              }}>
               back
             </Text>
           </Button>

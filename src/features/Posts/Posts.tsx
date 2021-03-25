@@ -1,5 +1,11 @@
 import React, {FC, useEffect, useState} from 'react';
-import {FlatList, StyleSheet, ActivityIndicator, Pressable} from 'react-native';
+import {
+  FlatList,
+  StyleSheet,
+  ActivityIndicator,
+  Pressable,
+  Platform,
+} from 'react-native';
 import {View, Text, Input, Header, Item, Button} from 'native-base';
 import axios from 'axios';
 import {Post} from 'components';
@@ -38,7 +44,9 @@ export const Posts: FC<Props> = ({navigation}) => {
 
       if (res?.data) {
         // console.log('response got for page no #', res.data.page);
-        if(res?.data?.page===pageNo){setPosts([...posts, ...res?.data?.hits]);}
+        if (res?.data?.page === pageNo) {
+          setPosts([...posts, ...res?.data?.hits]);
+        }
 
         setStatus(Status.resolved);
       }
@@ -127,7 +135,7 @@ export const Posts: FC<Props> = ({navigation}) => {
         keyboardShouldPersistTaps="handled"
         ListHeaderComponent={
           <View>
-            <Header searchBar rounded>
+            <Header searchBar>
               <Item>
                 <Input
                   placeholder="Search by title, author, url"
@@ -149,15 +157,15 @@ export const Posts: FC<Props> = ({navigation}) => {
                   </Text>
                 ) : null}
               </Item>
-              <Button transparent>
+              {/* <Button transparent>
                 <Text>Search</Text>
-              </Button>
+              </Button> */}
               <Pressable
                 style={{justifyContent: 'center', alignItems: 'center'}}>
                 <Text
                   style={{
                     fontSize: 12,
-                    color: '#fff',
+                    color: Platform.OS === 'android' ? '#fff' : '#333',
                     fontWeight: '700',
                     padding: 5,
                   }}
