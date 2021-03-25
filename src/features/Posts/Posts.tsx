@@ -38,7 +38,8 @@ export const Posts: FC<Props> = ({navigation}) => {
 
       if (res?.data) {
         // console.log('response got for page no #', res.data.page);
-        setPosts([...posts, ...res?.data?.hits]);
+        if(res?.data?.page===pageNo){setPosts([...posts, ...res?.data?.hits]);}
+
         setStatus(Status.resolved);
       }
     } catch (error) {
